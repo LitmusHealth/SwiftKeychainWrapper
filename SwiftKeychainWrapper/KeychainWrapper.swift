@@ -150,6 +150,14 @@ open class KeychainWrapper {
         return numberValue.intValue
     }
     
+    open func int64(forKey key: String, withAccessibility accessibility: KeychainItemAccessibility? = nil) -> Int64? {
+        guard let numberValue = object(forKey: key, withAccessibility: accessibility) as? NSNumber else {
+            return nil
+        }
+        
+        return numberValue.int64Value
+    }
+    
     open func float(forKey key: String, withAccessibility accessibility: KeychainItemAccessibility? = nil) -> Float? {
         guard let numberValue = object(forKey: key, withAccessibility: accessibility) as? NSNumber else {
             return nil
@@ -249,7 +257,11 @@ open class KeychainWrapper {
     @discardableResult open func set(_ value: Int, forKey key: String, withAccessibility accessibility: KeychainItemAccessibility? = nil) -> Bool {
         return set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
     }
-    
+
+    @discardableResult open func set(_ value: Int64, forKey key: String, withAccessibility accessibility: KeychainItemAccessibility? = nil) -> Bool {
+        return set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
+    }
+
     @discardableResult open func set(_ value: Float, forKey key: String, withAccessibility accessibility: KeychainItemAccessibility? = nil) -> Bool {
         return set(NSNumber(value: value), forKey: key, withAccessibility: accessibility)
     }
